@@ -1,4 +1,4 @@
-package com.gitsh01.libertyvillagers.fabric.mixin;
+package com.gitsh01.libertyvillagers.mixin;
 
 import com.google.common.collect.Maps;
 import net.minecraft.client.item.ClampedModelPredicateProvider;

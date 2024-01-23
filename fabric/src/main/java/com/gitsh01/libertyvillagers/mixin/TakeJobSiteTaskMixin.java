@@ -2,7 +2,8 @@ package com.gitsh01.libertyvillagers.mixin;
 
 import net.minecraft.entity.ai.brain.task.TakeJobSiteTask;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import static com.gitsh01.libertyvillagers.LibertyVillagersMod.CONFIG;
 

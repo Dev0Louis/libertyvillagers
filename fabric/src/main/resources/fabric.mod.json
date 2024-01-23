@@ -26,12 +26,11 @@
     ]
   },
   "mixins": [
-    "libertyvillagers.mixins.json",
-    "libertyvillagers-common.mixins.json"
+    "libertyvillagers.mixins.json"
   ],
+  "accessWidener": "libertyvillagers.accesswidener",
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.18.2",
-    "architectury": ">=4.11.91"
+    "minecraft": ">=1.20.4"
   }
 }

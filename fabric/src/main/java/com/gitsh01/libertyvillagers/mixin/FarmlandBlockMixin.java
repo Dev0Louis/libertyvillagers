@@ -1,6 +1,5 @@
 package com.gitsh01.libertyvillagers.mixin;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
@@ -19,7 +18,7 @@ import static com.gitsh01.libertyvillagers.LibertyVillagersMod.CONFIG;
 @Mixin(FarmlandBlock.class)
 public class FarmlandBlockMixin extends Block {
 
-    public FarmlandBlockMixin(AbstractBlock.Settings settings) {
+    public FarmlandBlockMixin(Settings settings) {
         super(settings);
     }
 

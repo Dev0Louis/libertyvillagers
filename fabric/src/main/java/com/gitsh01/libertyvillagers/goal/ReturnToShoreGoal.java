@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 
-
 import static com.gitsh01.libertyvillagers.LibertyVillagersMod.CONFIG;
 
 public class ReturnToShoreGoal extends WanderAroundGoal {

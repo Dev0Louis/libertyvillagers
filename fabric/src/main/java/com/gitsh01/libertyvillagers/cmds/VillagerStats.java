@@ -3,8 +3,8 @@ package com.gitsh01.libertyvillagers.cmds;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import dev.architectury.platform.Platform;
-import dev.architectury.utils.Env;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.passive.CatEntity;
@@ -26,7 +26,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterest;
 import net.minecraft.world.poi.PointOfInterestStorage;
-import net.minecraft.world.poi.PointOfInterestType;
 import net.minecraft.world.poi.PointOfInterestTypes;
 import org.apache.commons.lang3.tuple.MutablePair;
 
@@ -83,7 +82,7 @@ public class VillagerStats {
         ItemStack bookStack = new ItemStack(Items.WRITTEN_BOOK);
         bookStack.setSubNbt("title",
                 NbtString.of(Text.translatable("text.LibertyVillagers.villagerStats.title").getString()));
-        bookStack.setSubNbt("author", NbtString.of(player.getEntityName()));
+        bookStack.setSubNbt("author", NbtString.of(player.getNameForScoreboard()));
 
         List<VillagerEntity> villagers = serverWorld.getNonSpectatingEntities(VillagerEntity.class,
                 player.getBoundingBox().expand(CONFIG.debugConfig.villagerStatRange));
@@ -95,15 +94,15 @@ public class VillagerStats {
         pages.addAll(splitToPageTags(freeWorkstationsPage(player, serverWorld)));
         pages.addAll(splitToPageTags(homelessPage(player, villagers, serverWorld)));
         pages.addAll(splitToPageTags(availableBedsPage(player, serverWorld)));
-        pages.addAll(splitToPageTags(golems(player, serverWorld)));
+         pages.addAll(splitToPageTags(golems(player, serverWorld)));
         pages.addAll(splitToPageTags(cats(player, serverWorld)));
         bookStack.setSubNbt("pages", pages);
 
-        if (Platform.getEnvironment() == Env.CLIENT) {
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
             VillagerStatsClient.openBookScreen(bookStack);
         } else {
             // Without server translations, it just stays "invalid key" when you open the book on fabric servers.
-            if (Platform.isFabric() && !Platform.isModLoaded("server-translations-api")) {
+            if (false) {
                 player.sendMessage(Text.of("Server_translations_api is missing. VillagerStats does not work " +
                         "server-side without translations."), false);
                 return;
@@ -114,7 +113,7 @@ public class VillagerStats {
 
 
     private static Collection<NbtString> splitToPageTags(String string) {
-        final List<String> lines = Platform.getEnvironment() == Env.CLIENT ?
+        final List<String> lines = FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT ?
                 VillagerStatsClient.wrapText(string) :
                 VillagerStatsServer.wrapText(string);
 

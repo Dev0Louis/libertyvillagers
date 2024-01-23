@@ -2,7 +2,7 @@
 //file:noinspection GroovyMissingReturnStatement
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
+    id "fabric-loom" version "1.5-SNAPSHOT" apply false
     id "me.shedaniel.unified-publishing" version "0.1.+"
     id "com.github.breadmoirai.github-release" version "2.4.1"
     id 'org.ajoberstar.grgit' version  "5.2.0" // '3.1.1'
@@ -18,12 +18,9 @@ architectury {
 }
 
 subprojects {
-    apply plugin: "dev.architectury.loom"
+    apply plugin: "fabric-loom"
     apply plugin: "me.shedaniel.unified-publishing"
 
-    loom {
-        silentMojangMappingsLicense()
-    }
 
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
@@ -67,9 +64,10 @@ allprojects {
 
 task buildAll {
     dependsOn project("fabric").tasks.getByName("build")
-    dependsOn project("forge").tasks.getByName("build")
+    //dependsOn project("forge").tasks.getByName("build")
 }
 
+/*
 task unifiedRelease {
     dependsOn buildAll
     dependsOn githubRelease
@@ -79,9 +77,9 @@ task unifiedRelease {
     if (subprojects.any { it.name == "fabric" }) {
         dependsOn project("fabric").tasks.getByName("publishUnified")
     }
-}
+}*/
 
-githubRelease {
+/*githubRelease {
     token System.getenv("GITHUB_TOKEN") ?: ""
     owner "gitsh01"
     tagName = project.version + "+" + project.minecraft_version
@@ -95,7 +93,7 @@ githubRelease {
             'jar') }
     releaseAssets = { new File("fabric/build/libs").listFiles(filter) + new File("forge/build/libs").listFiles(filter) }
     overwrite true
-}
+}*/
 
 
 /*

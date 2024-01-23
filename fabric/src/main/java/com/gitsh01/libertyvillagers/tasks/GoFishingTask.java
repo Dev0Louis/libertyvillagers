@@ -28,7 +28,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import org.jetbrains.annotations.Nullable;
 
-
 import static com.gitsh01.libertyvillagers.LibertyVillagersMod.CONFIG;
 
 public class GoFishingTask extends MultiTickTask<VillagerEntity> {
